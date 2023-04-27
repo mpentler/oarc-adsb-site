@@ -1,0 +1,56 @@
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#beaststatspanel {
+  border-radius: 25px;
+  padding: 20px;
+  height: auto;
+  text-align: left;
+  vertical-align: top;
+  background-color: lightgrey;
+}
+
+#beaststatus {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#mlatstatspanel {
+  border-radius: 25px;
+  padding: 20px;
+  height: auto;
+  text-align: left;
+  vertical-align: top;
+  background-color: lightgrey;
+}
+
+#mlatstatus {
+  margin-top: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#bottomtext {
+  margin-top: 20px;
+  float: left;
+}
+
+.beastdot {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mlatdot {
+  height: 15px;
+  width: 15px;
+  background-color: red;
+  border-radius: 50%;
+  display: inline-block;
+}
