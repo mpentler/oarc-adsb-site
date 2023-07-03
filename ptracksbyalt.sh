@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-TARGET_DIR=/home/$USER/oarc-adsb-screenshots/$TIMESTAMP
-SYMLINK=$TARGET_DIR/latest
+WORKING_DIR=/home/$USER/oarc-adsb-screenshots
+TARGET_DIR=$WORKING_DIR/$TIMESTAMP
+SYMLINK=$WORKING_DIR/latest
 
 mkdir -p $TARGET_DIR
 
