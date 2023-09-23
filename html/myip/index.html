@@ -99,6 +99,25 @@
     </div>
   </div>
 
+  <div class="row mb-4 d-none" id="null_uuid_alert">
+    <div class="col-sm">
+      <div class="alert alert-danger" role="alert">
+        <h3>
+          Update your OARC ADSB feed client!
+        </h3>
+        <p>
+          Your feed client is sending <code>null</code> as a UUID.</p>
+        <p>
+          Where this "<em>unique</em> user ID" (UUID) is not unique between multiple feeders, this can be problematic and risks introducing errors in the data.
+        </p>
+        <p>
+          The easiest remedy is to update your OARC ADSB installation
+          (<a href="https://github.com/mpentler/oarc-adsb-scripts/#update-the-feed-client-without-reconfiguring" class="alert-link">guide to update without reconfiguring</a>).
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="row gy-4" id="status_rows">
     <div class="col">
       <p class="alert alert-danger">

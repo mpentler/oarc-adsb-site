@@ -244,6 +244,10 @@ function updateUserStats(data) {
     if (data.uuids.length === 2 && data.beastData.length === 1 && data.mlatData.length === 1) {
         document.getElementById('update_oarc_client_alert').classList.remove('d-none');
     }
+    // If a null UUID is present, this is potentially problematic and the user should be alerted.
+    if(data.uuids.includes(null)) {
+        document.getElementById('null_uuid_alert').classList.remove('d-none');
+    }
 
     let statusRows = [noDataToDisplay()];
     if (data.uuids.length > 0) {
