@@ -152,7 +152,7 @@ function statusRowForUuid(data, uuid) {
 
     return output;
 }
-function noDataToDisplay() {
+function noDataToDisplayForThisIpAddress() {
     let beastHtml = `
     <div class="col">
       <div class="card border-danger">
@@ -161,7 +161,7 @@ function noDataToDisplay() {
         </div>
         <div class="card-body border-danger">
           <div id="beaststats">
-            <strong>No beast data for this UUID</strong>
+            <strong>No beast data for this IP address</strong>
           </div>
         </div>
       </div>
@@ -176,7 +176,7 @@ function noDataToDisplay() {
         </div>
         <div class="card-body">
           <div id="mlatstats">
-            <strong>No MLAT data for this UUID</strong>
+            <strong>No MLAT data for this IP address</strong>
           </div>
         </div>
       </div>
@@ -249,7 +249,7 @@ function updateUserStats(data) {
         document.getElementById('null_uuid_alert').classList.remove('d-none');
     }
 
-    let statusRows = [noDataToDisplay()];
+    let statusRows = [noDataToDisplayForThisIpAddress()];
     if (data.uuids.length > 0) {
         console.info('uuids present...')
         statusRows = data.uuids.map(uuid => statusRowForUuid(data, uuid));
