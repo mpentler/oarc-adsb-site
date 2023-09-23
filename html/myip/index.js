@@ -161,6 +161,11 @@ function updateUserStats(data) {
     const userIpObfuscated = getObfuscatedUserIp(userIp);
     document.getElementById("userip").innerHTML = userIpObfuscated;
 
+    // If two UUIDs, one for Beast and one for MLAT, then this is likely an old OARC installation.
+    if(data.uuids.length === 2 && data.beastData.length === 1 && data.mlatData.length === 1) {
+        document.getElementById('update_oarc_client_alert').classList.remove('d-none');
+    }
+
     const statusRows = data.uuids.map(uuid => statusRowForUuid(data, uuid));
     document.getElementById("status_rows").innerHTML = statusRows.join('\n');
 
