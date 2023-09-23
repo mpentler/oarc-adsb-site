@@ -81,12 +81,49 @@
     </div>
   </div>
 
+  <div class="row mb-4 d-none" id="update_oarc_client_alert">
+    <div class="col-sm">
+      <div class="alert alert-warning" role="alert">
+        <h3>
+          Update your OARC ADSB feed client!
+        </h3>
+        <p>
+          Beast and MLAT data is being sent with different UUIDs.
+          Recent versions of the installation script will use the same UUID for both Beast and MLAT data.
+        </p>
+        <p>
+          To have Beast and MLAT data fed to OARC with the same UUID, run the update script
+          (<a href="https://github.com/mpentler/oarc-adsb-scripts/#update-the-feed-client-without-reconfiguring" class="alert-link">guide to update without reconfiguring</a>).
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-4 d-none" id="null_uuid_alert">
+    <div class="col-sm">
+      <div class="alert alert-danger" role="alert">
+        <h3>
+          Update your OARC ADSB feed client!
+        </h3>
+        <p>
+          Your feed client is sending <code>null</code> as a UUID.</p>
+        <p>
+          Where the "<em>unique</em> user ID" (UUID) is not unique between multiple feeders, this can be problematic and risks introducing errors in the data.
+        </p>
+        <p>
+          The easiest remedy is to update your OARC ADSB installation
+          (<a href="https://github.com/mpentler/oarc-adsb-scripts/#update-the-feed-client-without-reconfiguring" class="alert-link">guide to update without reconfiguring</a>).
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="row gy-4" id="status_rows">
     <div class="col">
       <p class="alert alert-danger">
-        JavaScript is disabled or there has been an error which prevents JavaScript from running.
+        JavaScript is disabled or there has been an error which prevents JavaScript from updating this page with feed data.
         <br/>
-        Enable JavaScript to view IP stats and/or report suspected issues via the OARC Discord.
+        Enable JavaScript to view IP stats and/or report issues via the OARC Discord.
       </p>
     </div>
   </div>
@@ -112,14 +149,14 @@
     - This code segment actually "does stuff" / calls the functions.
   */
 
-  // // URLs to the API data - these two relative URLs are useful for testing locally
-  // // if you paste a copy of the API output in your working directory.
-  // const apiUrlIp = 'myip_v4.json';
-  // const apiUrlFeedCount = 'feedcount.json';
+  // URLs to the API data - these two relative URLs are useful for testing locally
+  // if you paste a copy of the API output in your working directory.
+  const apiUrlIp = 'myip_v4.json';
+  const apiUrlFeedCount = 'feedcount.json';
 
-  // URLs to the API data - these are the real URLs for the live site.
-  const apiUrlIp = 'https://adsb.oarc.uk/api/v4/myip';
-  const apiUrlFeedCount = 'https://adsb.oarc.uk/api/v3/feedcount';
+  // // URLs to the API data - these are the real URLs for the live site.
+  // const apiUrlIp = 'https://adsb.oarc.uk/api/v4/myip';
+  // const apiUrlFeedCount = 'https://adsb.oarc.uk/api/v3/feedcount';
 
   // Trigger the first update ASAP
   getApiData(apiUrlIp, apiUrlFeedCount);

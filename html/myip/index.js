@@ -63,11 +63,11 @@ function getObfuscatedUserIp(userIp) {
 function statusRowForUuid(data, uuid) {
 
     const beastData = data.beastData.filter(item => item.uuid === uuid);
-    let beastHtml = `
-    <div class="col-sm">
-      <div class="card">
+    let beastColHtml = `
+    <div class="col">
+      <div class="card border-danger">
         <div class="card-header">
-          <h4><span class="statusdot inactive_feed beastdot"></span> Beast ADS-B</h4>
+          <h4 class="card-title"><span class="statusdot inactive_feed beastdot"></span> Beast ADS-B</h4>
         </div>
         <div class="card-body">
           <div id="beaststats">
@@ -77,14 +77,14 @@ function statusRowForUuid(data, uuid) {
       </div>
     </div>`;
 
-    if(beastData.length === 1) {
+    if (beastData.length === 1) {
         const beastEntry = beastData[0];
 
-        beastHtml = `
-    <div class="col-sm">
+        beastColHtml = `
+    <div class="col">
       <div class="card">
         <div class="card-header">
-          <h4><span class="statusdot active_feed beastdot"></span> Beast ADS-B</h4>
+          <h4 class="card-title"><span class="statusdot active_feed beastdot"></span> Beast ADS-B</h4>
         </div>
         <div class="card-body">
 
@@ -104,11 +104,11 @@ function statusRowForUuid(data, uuid) {
     }
 
     const mlatData = data.mlatData.filter(item => item.uuid === uuid);
-    let mlatHtml = `
-    <div class="col-sm">
-      <div class="card">
+    let mlatColHtml = `
+    <div class="col">
+      <div class="card border-danger">
         <div class="card-header">
-          <h4><span class="statusdot inactive_feed mlatdot"></span> MLAT</h4>
+          <h4 class="card-title"><span class="statusdot inactive_feed mlatdot"></span> MLAT</h4>
         </div>
         <div class="card-body">
           <div id="mlatstats">
@@ -118,14 +118,14 @@ function statusRowForUuid(data, uuid) {
       </div>
     </div>`;
 
-    if(mlatData.length === 1) {
+    if (mlatData.length === 1) {
         const mlatEntry = mlatData[0];
 
-        mlatHtml = `
-    <div class="col-sm">
+        mlatColHtml = `
+    <div class="col">
       <div class="card">
         <div class="card-header">
-          <h4><span class="statusdot active_feed mlatdot"></span> MLAT</h4>
+          <h4 class="card-title"><span class="statusdot active_feed mlatdot"></span> MLAT</h4>
         </div>
         <div class="card-body">
           <div id="mlatstats">
@@ -144,8 +144,87 @@ function statusRowForUuid(data, uuid) {
 
     const obfuscatedUuid = getObfuscatedUuid(uuid);
     const output = `
-  <div class="row gx-3">
+  <div class="row gx-3 mt-3">
     <h3>UUID: <code>` + obfuscatedUuid + `</code></h3>
+    ` + beastColHtml + `
+    ` + mlatColHtml + `
+  </div>`;
+
+    return output;
+}
+function noDataToDisplayForThisIpAddress() {
+    let beastHtml = `
+    <div class="col">
+      <div class="card border-danger">
+        <div class="card-header">
+          <h4 class="card-title"><span class="statusdot inactive_feed beastdot"></span> Beast ADS-B</h4>
+        </div>
+        <div class="card-body border-danger">
+          <div id="beaststats">
+            <strong>No beast data for this IP address</strong>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+
+    let mlatHtml = `
+    <div class="col">
+      <div class="card border-danger">
+        <div class="card-header">
+          <h4 class="card-title"><span class="statusdot inactive_feed mlatdot"></span> MLAT</h4>
+        </div>
+        <div class="card-body">
+          <div id="mlatstats">
+            <strong>No MLAT data for this IP address</strong>
+          </div>
+        </div>
+      </div>
+    </div>`;
+
+    const noData = `
+    <div class="col mb-4">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h3 class="card-title"><span class="statusdot inactive_feed mlatdot"></span> No ADSB data for this IP address</h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    <h4>Getting Started</h4>
+                </p>
+                <p>
+                    If you do not yet have an ADSB system setup to feed data to the OARC ADSB server, you will need:
+                </p>
+                <ol>
+                    <li><strong>Hardware</strong> - a Raspberry Pi or similar, with an antenna and SDR to recieve radio signals</li>
+                    <li><strong>Software</strong> - to interpret radio signals and convert them to digital/textual ADSB data (recommended: <code>readsb</code>, installed using <a href="https://github.com/mpentler/oarc-adsb-scripts/">the OARC installation scripts</a>)</li>
+                    <li><strong>OARC-specific configuration</strong> - to send ADSB data to the OARC server, see the <a href="https://github.com/mpentler/oarc-adsb-scripts/">installation script documentaton</a> for details</li>
+                </ol>
+                <p>
+                    <h4>Troubleshooting tips</h4>
+                </p>
+                <p>
+                    If you have an ADSB feed setup, but are not seeing data:
+                </p>
+                <ul>
+                    <li><strong>IP Address match</strong> - Are you connecting from a network which is different to your feeder's network (e.g., 4G or via VPN)?</li>
+                    <li><strong>Feed running correctly</strong> - See notes within the <a href="https://github.com/mpentler/oarc-adsb-scripts/">script documentation</a> for log and support information</li>
+                </ul>
+                <p>
+                    <h4>Learning more / Additional support</h4>
+                </p>
+                <ul>
+                    <li>The OARC community welcomes discussion via the ADSB Discord channel - <code>#adsb-flight-tracking</code></li>
+                    <li>Also available is the <a href="https://wiki.oarc.uk/flight:adsb">OARC Wiki pages</a> which contain more more guidance and information about ADSB</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+`;
+
+    const output = `
+    ` + noData + `
+  <div class="row gx-3">
     ` + beastHtml + `
     ` + mlatHtml + `
   </div>`;
@@ -161,8 +240,22 @@ function updateUserStats(data) {
     const userIpObfuscated = getObfuscatedUserIp(userIp);
     document.getElementById("userip").innerHTML = userIpObfuscated;
 
-    const statusRows = data.uuids.map(uuid => statusRowForUuid(data, uuid));
-    document.getElementById("status_rows").innerHTML = statusRows.join('\n');
+    // If two UUIDs, one for Beast and one for MLAT, then this is likely an old OARC installation.
+    if (data.uuids.length === 2 && data.beastData.length === 1 && data.mlatData.length === 1) {
+        document.getElementById('update_oarc_client_alert').classList.remove('d-none');
+    }
+    // If a null UUID is present, this is potentially problematic and the user should be alerted.
+    if(data.uuids.includes(null)) {
+        document.getElementById('null_uuid_alert').classList.remove('d-none');
+    }
+
+    let statusRows = [noDataToDisplayForThisIpAddress()];
+    if (data.uuids.length > 0) {
+        console.info('uuids present...')
+        statusRows = data.uuids.map(uuid => statusRowForUuid(data, uuid));
+    }
+
+    document.getElementById("status_rows").innerHTML = '<div class="col">' + statusRows.join('\n') + '</div>';
 
 }
 
