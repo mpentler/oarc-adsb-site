@@ -64,7 +64,7 @@ function statusRowForUuid(data, uuid) {
 
     const beastData = data.beastData.filter(item => item.uuid === uuid);
     let beastColHtml = `
-    <div class="col">
+    <div class="col-sm">
       <div class="card border-danger">
         <div class="card-header">
           <h4 class="card-title"><span class="statusdot inactive_feed beastdot"></span> Beast ADS-B</h4>
@@ -81,7 +81,7 @@ function statusRowForUuid(data, uuid) {
         const beastEntry = beastData[0];
 
         beastColHtml = `
-    <div class="col">
+    <div class="col-sm">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title"><span class="statusdot active_feed beastdot"></span> Beast ADS-B</h4>
@@ -105,7 +105,7 @@ function statusRowForUuid(data, uuid) {
 
     const mlatData = data.mlatData.filter(item => item.uuid === uuid);
     let mlatColHtml = `
-    <div class="col">
+    <div class="col-sm">
       <div class="card border-danger">
         <div class="card-header">
           <h4 class="card-title"><span class="statusdot inactive_feed mlatdot"></span> MLAT</h4>
@@ -122,7 +122,7 @@ function statusRowForUuid(data, uuid) {
         const mlatEntry = mlatData[0];
 
         mlatColHtml = `
-    <div class="col">
+    <div class="col-sm">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title"><span class="statusdot active_feed mlatdot"></span> MLAT</h4>
@@ -154,7 +154,7 @@ function statusRowForUuid(data, uuid) {
 }
 function noDataToDisplayForThisIpAddress() {
     let beastHtml = `
-    <div class="col">
+    <div class="col-sm">
       <div class="card border-danger">
         <div class="card-header">
           <h4 class="card-title"><span class="statusdot inactive_feed beastdot"></span> Beast ADS-B</h4>
@@ -169,7 +169,7 @@ function noDataToDisplayForThisIpAddress() {
 
 
     let mlatHtml = `
-    <div class="col">
+    <div class="col-sm">
       <div class="card border-danger">
         <div class="card-header">
           <h4 class="card-title"><span class="statusdot inactive_feed mlatdot"></span> MLAT</h4>
@@ -183,7 +183,7 @@ function noDataToDisplayForThisIpAddress() {
     </div>`;
 
     const noData = `
-    <div class="col mb-4">
+    <div class="col-sm mb-4">
         <div class="card">
             <div class="card-header bg-light">
                 <h3 class="card-title"><span class="statusdot inactive_feed mlatdot"></span> No ADSB data for this IP address</h3>
