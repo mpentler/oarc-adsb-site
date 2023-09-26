@@ -42,7 +42,6 @@ function alertStoppedFormatter(value, row, index) {
     return '<span title="' + stopped + '">' + value + '<br/>' + ' ' + '<small>' + '(since first detection: ' + humanReadableTimeDuration(detected, stopped) + ')' + '</small>' + '</span>';
 }
 
-// hh hours, mm minutes, ss seconds
 function humanReadableTimeDuration(start, end) {
     const diffMs = end - start;
     const diffHours = Math.floor(diffMs / 1000 / 60 / 60);
@@ -51,21 +50,30 @@ function humanReadableTimeDuration(start, end) {
 
     let val = '';
     if (diffHours > 0) {
-        val += diffHours + ' hours';
+        val += diffHours + ' hour';
+        if(diffHours > 1) {
+            val += 's';
+        }
     }
 
     if (diffMinutes > 0) {
         if (val.length > 0) {
             val += ', ';
         }
-        val += diffMinutes + ' minutes';
+        val += diffMinutes + ' minute';
+        if(diffMinutes > 1) {
+            val += 's';
+        }
     }
 
     if (diffSeconds > 0 || val === '') {
         if (val.length > 0) {
             val += ', ';
         }
-        val += diffSeconds + ' seconds';
+        val += diffSeconds + ' second';
+        if(diffSeconds > 1) {
+            val += 's';
+        }
     }
 
     return val;
