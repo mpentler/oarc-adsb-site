@@ -10,14 +10,14 @@ function icaoHexFormatter(value, row, index) {
     return '<code>' + value + '</code>';
 }
 
-function squawkFormatter(value, row, index) {
-    var squawkDescriptions = {
-        7500: 'Unlawful interference',
-        7600: 'Lost communications',
-        7700: 'General emergency'
-    };
+const squawkDescriptions = {
+    7500: 'Unlawful interference',
+    7600: 'Lost communications',
+    7700: 'General emergency'
+};
 
-    var description = squawkDescriptions[value];
+function squawkFormatter(value, row, index) {
+    const description = squawkDescriptions[value];
     if (description === undefined) {
         return '<code>' + value + '</code>';
     }
@@ -35,6 +35,7 @@ function lastSeenFormatter(value, row, index) {
 
     return '<span title="' + lastSeen + '">' + lastSeen.toLocaleString() + '<br/>' + ' ' + '<small>' + '(since first detection: ' + humanReadableTimeDuration(detected, lastSeen) + ')' + '</small>' + '</span>';
 }
+
 function alertStoppedFormatter(value, row, index) {
     const detected = new Date(row.alert_detected);
     const stopped = new Date(value);
@@ -51,7 +52,7 @@ function humanReadableTimeDuration(start, end) {
     let val = '';
     if (diffHours > 0) {
         val += diffHours + ' hour';
-        if(diffHours > 1) {
+        if (diffHours > 1) {
             val += 's';
         }
     }
@@ -61,7 +62,7 @@ function humanReadableTimeDuration(start, end) {
             val += ', ';
         }
         val += diffMinutes + ' minute';
-        if(diffMinutes > 1) {
+        if (diffMinutes > 1) {
             val += 's';
         }
     }
@@ -71,7 +72,7 @@ function humanReadableTimeDuration(start, end) {
             val += ', ';
         }
         val += diffSeconds + ' second';
-        if(diffSeconds > 1) {
+        if (diffSeconds > 1) {
             val += 's';
         }
     }
