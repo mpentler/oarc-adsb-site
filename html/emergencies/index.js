@@ -40,7 +40,7 @@ function alertStoppedFormatter(value, row, index) {
     const detected = new Date(row.alert_detected);
     const stopped = new Date(value);
 
-    return '<span title="' + stopped + '">' + value + '<br/>' + ' ' + '<small>' + '(since first detection: ' + humanReadableTimeDuration(detected, stopped) + ')' + '</small>' + '</span>';
+    return '<span title="' + stopped + '">' + stopped.toLocaleString() + '<br/>' + ' ' + '<small>' + '(since first detection: ' + humanReadableTimeDuration(detected, stopped) + ')' + '</small>' + '</span>';
 }
 
 function humanReadableTimeDuration(start, end) {
