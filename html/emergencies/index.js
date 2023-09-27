@@ -80,3 +80,7 @@ function humanReadableTimeDuration(start, end) {
     return val;
 }
 
+function dateSorter(a, b) {
+    return new Date(a) - new Date(b);
+}
+
